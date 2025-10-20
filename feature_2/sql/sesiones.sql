@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `BurgerKong__sesiones` (
+CREATE TABLE IF NOT EXISTS `sesiones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `session_id` varchar(255) NOT NULL,
   `user_id` int(11) DEFAULT NULL,

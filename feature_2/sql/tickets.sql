@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `BurgerKong__tickets` (
+CREATE TABLE IF NOT EXISTS `tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_clientes` int(11) NOT NULL,
   `total` decimal(10,2) NOT NULL,

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `BurgerKong__clientes` (
+CREATE TABLE IF NOT EXISTS `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,

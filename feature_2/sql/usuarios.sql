@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `BurgerKong__usuarios` (
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS `BurgerKong__usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Insertar usuario administrador por defecto
-INSERT INTO `BurgerKong__usuarios` (`username`, `password`, `email`, `rol`) VALUES
+INSERT INTO `usuarios` (`username`, `password`, `email`, `rol`) VALUES
 ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@burgerkong.com', 'admin');
 -- Contraseña: password

@@ -1,1 +1,23 @@
-/feature_1
+# Archivos de credenciales
+**/credenciales.php
+**/credenciales_docker.php
+**/conexion.php
+
+# Archivos de configuración local
+.env
+.env.local
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Directorios de sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
