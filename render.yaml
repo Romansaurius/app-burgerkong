@@ -1,20 +1,10 @@
 services:
   - type: web
-    name: burgerkong-app
+    name: BurgerKong
     env: php
     buildCommand: composer install --no-dev --optimize-autoloader
     startCommand: php -S 0.0.0.0:$PORT -t .
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: burgerkong-db
-          property: connectionString
       - key: PHP_VERSION
         value: "8.1"
     
-  - type: pserv
-    name: burgerkong-db
-    env: mysql
-    plan: free
-    databaseName: burgerkong
-    user: burgerkong_user
