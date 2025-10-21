@@ -38,9 +38,20 @@ if (isset($_GET['action'], $_GET['id'])) {
 }
 
 
-foreach ($_SESSION['carrito'] as $id => $cantidad) {
-    if (!isset($_SESSION['carrito'][$id]) || !is_numeric($_SESSION['carrito'][$id])) {
-        $_SESSION['carrito'][$id] = 1; 
+// Limpiar carrito si tiene formato antiguo
+foreach ($_SESSION['carrito'] as $id => $item) {
+    if (!is_array($item)) {
+        // Convertir formato antiguo a nuevo
+        $producto = listMyProduc2($id);
+        if ($producto) {
+            $_SESSION['carrito'][$id] = [
+                'idProducto' => $producto['id'],
+                'titulo' => $producto['titulo'],
+                'imagenMenu' => $producto['imagenMenu'],
+                'precio' => $producto['precio'],
+                'cantidad' => is_numeric($item) ? $item : 1
+            ];
+        }
     }
 }
 
