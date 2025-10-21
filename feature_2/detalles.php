@@ -60,7 +60,7 @@ foreach ($cate as $info) {
 
 
     <footer>
-        <p>  &copy; 2024 BURGUER KONG.<a href="https://mattprofe.com.ar/alumno/61/lso/9909/CV/"> Informacion del creador</a></p>
+        <p>  &copy; 2024 BURGUER KONG.<a href="https://drive.google.com/file/d/1A1QEBqsHXQake8fc94oqCjWPZsxcSF6i/view" target="_blank"> Informacion del creador</a></p>
     </footer>
 </body>
 </html>

@@ -94,7 +94,7 @@ $_SESSION['total'] = $total;
     <?php endif; ?>
 </div>
     <footer>
-        <p>&copy; 2024 BURGER KONG.<a href="https://mattprofe.com.ar/alumno/61/lso/9909/CV/"> Información del creador</a></p>
+        <p>&copy; 2024 BURGER KONG.<a href="https://drive.google.com/file/d/1A1QEBqsHXQake8fc94oqCjWPZsxcSF6i/view" target="_blank"> Información del creador</a></p>
     </footer>
 </body>
 </html>

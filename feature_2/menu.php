@@ -87,7 +87,7 @@ $cantidadProductos = countproduct();
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 BURGUER KONG. 
-            <a href="https://mattprofe.com.ar/alumno/61/lso/9909/CV/" target="_blank" rel="noopener">Información del creador</a>
+            <a href="https://drive.google.com/file/d/1A1QEBqsHXQake8fc94oqCjWPZsxcSF6i/view" target="_blank" rel="noopener">Información del creador</a>
         </p>
     </footer>
 </body>
