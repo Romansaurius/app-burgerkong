@@ -1,5 +1,15 @@
 <?php
 include_once 'BurgerTools.php';
+
+// Manejar añadir al carrito
+if (isset($_GET['carrito'])) {
+    $id = $_GET['carrito'];
+    carrito($id);
+    // Redirigir para evitar reenvío del formulario
+    header('Location: detalles.php?id=' . $id);
+    exit();
+}
+
 $cate=listcategorias();
 $producto=[];
 if (isset($_GET['id'])) {
@@ -9,6 +19,8 @@ if (isset($_GET['id'])) {
     $categoria_id = $cate[0]['id'];
     $producto = listMyProduc2($categoria_id);
 }
+
+$cantidadProductos = countproduct();
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,6 +56,10 @@ foreach ($cate as $info) {
 
 </div>
 
+<div style="text-align: right; margin: 20px;">
+    <a href="carrito.php" class="button2">Ver carrito (<?php echo $cantidadProductos; ?>)</a>
+</div>
+
 
 
 
@@ -55,7 +71,10 @@ foreach ($cate as $info) {
         <img src="<?php echo $producto['imagenMenu']; ?>" alt="<?php echo $producto['titulo']; ?>" class="producto-img">
         <h1 class="product-text"><?php echo $producto['titulo']; ?></h1>
         <p class="producto-price">$<?php echo $producto['precio']; ?></p>
-        <a href="menu.php" class="back-button">Volver al Menú</a>
+        <div class="producto-actions">
+            <a href="detalles.php?carrito=<?php echo $producto['id']; ?>" class="add-to-cart-btn">🛒 Añadir al Carrito</a>
+            <a href="menu.php" class="back-button">Volver al Menú</a>
+        </div>
     </div>
 
 

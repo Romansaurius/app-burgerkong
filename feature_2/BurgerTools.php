@@ -55,10 +55,18 @@ function carrito($id) {
 function calcularTotal($carrito) {
     $total = 0;
 
-    foreach ($carrito as $id => $cantidad) {
-        $productoDetails = listMyProduc2($id);
-        if ($productoDetails && isset($productoDetails['precio']) && is_numeric($productoDetails['precio']) && is_numeric($cantidad)) {
-            $total += $productoDetails['precio'] * $cantidad;
+    foreach ($carrito as $id => $item) {
+        if (is_array($item)) {
+            // Nuevo formato: array con datos del producto
+            $precio = $item['precio'] ?? 0;
+            $cantidad = $item['cantidad'] ?? 0;
+            $total += $precio * $cantidad;
+        } else {
+            // Formato antiguo: solo cantidad
+            $productoDetails = listMyProduc2($id);
+            if ($productoDetails && isset($productoDetails['precio']) && is_numeric($productoDetails['precio']) && is_numeric($item)) {
+                $total += $productoDetails['precio'] * $item;
+            }
         }
     }
     return $total;
@@ -92,12 +100,15 @@ function venta($ticket_id) {
     include_once 'conexion.php';
     $carrito = $_SESSION['carrito'] ?? [];
     foreach ($carrito as $producto) {
-        $idProducto = $producto['idProducto'];
-        $precio = $producto['precio'];
-        $cantidad = $producto['cantidad'];
+        // Verificar que el producto tenga los datos necesarios
+        if (isset($producto['idProducto']) && isset($producto['precio']) && isset($producto['cantidad'])) {
+            $idProducto = $producto['idProducto'];
+            $precio = $producto['precio'];
+            $cantidad = $producto['cantidad'];
 
-        $sql = "INSERT INTO ventas (idTicket, idProducto, precio, cantidad) VALUES ('$ticket_id', '$idProducto', '$precio', '$cantidad')";
-        consulta($sql);
+            $sql = "INSERT INTO ventas (idTicket, idProducto, precio, cantidad) VALUES ('$ticket_id', '$idProducto', '$precio', '$cantidad')";
+            consulta($sql);
+        }
     }
 }
 

@@ -12,15 +12,25 @@ if (isset($_GET['action'], $_GET['id'])) {
     $action = $_GET['action'];
 
     if ($action === 'increment') {
-     
-        $_SESSION['carrito'][$id] = isset($_SESSION['carrito'][$id]) && is_numeric($_SESSION['carrito'][$id])
-            ? intval($_SESSION['carrito'][$id]) + 1
-            : 1;
+        if (isset($_SESSION['carrito'][$id]) && is_array($_SESSION['carrito'][$id])) {
+            $_SESSION['carrito'][$id]['cantidad']++;
+        } else {
+            // Si no existe, agregarlo
+            $producto = listMyProduc2($id);
+            if ($producto) {
+                $_SESSION['carrito'][$id] = [
+                    'idProducto' => $producto['id'],
+                    'titulo' => $producto['titulo'],
+                    'imagenMenu' => $producto['imagenMenu'],
+                    'precio' => $producto['precio'],
+                    'cantidad' => 1
+                ];
+            }
+        }
     } elseif ($action === 'decrement') {
-       
-        if (isset($_SESSION['carrito'][$id]) && is_numeric($_SESSION['carrito'][$id])) {
-            $_SESSION['carrito'][$id] = max(0, intval($_SESSION['carrito'][$id]) - 1);
-            if ($_SESSION['carrito'][$id] === 0) {
+        if (isset($_SESSION['carrito'][$id]) && is_array($_SESSION['carrito'][$id])) {
+            $_SESSION['carrito'][$id]['cantidad']--;
+            if ($_SESSION['carrito'][$id]['cantidad'] <= 0) {
                 unset($_SESSION['carrito'][$id]);
             }
         }
@@ -67,22 +77,21 @@ $_SESSION['total'] = $total;
         <div class="total">
             <h1>TOTAL: $<?= number_format($_SESSION['total'], 2); ?></h1>
         </div>
-          <div class="menu-container">            <?php foreach ($_SESSION['carrito'] as $id => $cantidad): 
-                $producto = listMyProduc2($id);
-                if ($producto):
+          <div class="menu-container">            <?php foreach ($_SESSION['carrito'] as $id => $item): 
+                if (is_array($item)):
             ?>
              
                     <div class="card">
-                        <img src="<?= htmlspecialchars($producto['imagenMenu']); ?>" alt="<?= htmlspecialchars($producto['titulo']); ?>">
+                        <img src="<?= htmlspecialchars($item['imagenMenu']); ?>" alt="<?= htmlspecialchars($item['titulo']); ?>">
                         <div class="producto-info">
-                            <h2><?= htmlspecialchars($producto['titulo']); ?></h2>
-                            <p>Precio: $<?= number_format(floatval($producto['precio']), 2); ?></p>
-                            <p>Cantidad: <?= intval($cantidad); ?></p>
-                            <p>Total: $<?= number_format(floatval($producto['precio']) * intval($cantidad), 2); ?></p>
+                            <h2><?= htmlspecialchars($item['titulo']); ?></h2>
+                            <p>Precio: $<?= number_format(floatval($item['precio']), 2); ?></p>
+                            <p>Cantidad: <?= intval($item['cantidad']); ?></p>
+                            <p>Total: $<?= number_format(floatval($item['precio']) * intval($item['cantidad']), 2); ?></p>
                         </div>
                         <div class="producto-cantidad">
                             <a href="carrito.php?action=increment&id=<?= urlencode($id); ?>">+</a>
-                            <span><?= intval($cantidad); ?></span>
+                            <span><?= intval($item['cantidad']); ?></span>
                             <a href="carrito.php?action=decrement&id=<?= urlencode($id); ?>">-</a>
                         </div>
                     </div>
