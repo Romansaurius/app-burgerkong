@@ -67,15 +67,17 @@ foreach ($cate as $info) {
 
 
 
- <div class="producto">
+<div class="containerall">
+    <div class="producto">
         <img src="<?php echo $producto['imagenMenu']; ?>" alt="<?php echo $producto['titulo']; ?>" class="producto-img">
         <h1 class="product-text"><?php echo $producto['titulo']; ?></h1>
-        <p class="producto-price">$<?php echo $producto['precio']; ?></p>
+        <p class="producto-price">$<?php echo number_format($producto['precio'], 2); ?></p>
         <div class="producto-actions">
             <a href="detalles.php?carrito=<?php echo $producto['id']; ?>" class="add-to-cart-btn">🛒 Añadir al Carrito</a>
             <a href="menu.php" class="back-button">Volver al Menú</a>
         </div>
     </div>
+</div>
 
 
     <footer>
