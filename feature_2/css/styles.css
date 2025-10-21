@@ -229,14 +229,17 @@ p {
     align-items: center;
     justify-content: center;
     min-height: 50vh;
+    width: 100%;
 }
 
 .producto-img {
-    max-width: 100%;
+    max-width: 300px;
+    width: 100%;
     height: auto;
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
+    display: block;
 }
 
 .product-text {
