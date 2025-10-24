@@ -15,10 +15,10 @@ $sucursales=listsucursales();
 
 <div class="head">
 
-    <a href="sucursales.php"><img src="Logos/logo1.png" alt="Logo BurgerKong" class="logomain"> </a>
     <a href="admin.php" class="button3">Eres Adminisrador? </a>
+    <a href="sucursales.php"><img src="Logos/logo1.png" alt="Logo BurgerKong" class="logomain"> </a>
 
-   
+
 </div>
 
 
